@@ -8,20 +8,20 @@ export class MainPage {
     render() {
         const data = [
         {
-            src: "https://via.placeholder.com/800x400?text=Математика",
+            src: "https://png.klev.club/uploads/posts/2024-03/png-klev-club-p-matematika-png-1.png",
             title: "Математика",
             description: "Изучение чисел, алгебры, геометрии и аналитики.",
             details: "Математика включает темы такие как арифметика, теория вероятностей, линейная алгебра и другие."
             
         },
         {
-            src: "https://via.placeholder.com/800x400?text=Физика",
+            src: "http://atlascor.sch38nvkz.edusite.ru/images/vs.png",
             title: "Физика",
             description: "Наука о природе, механике, оптике и квантовой теории.",
             details: "Физика охватывает механические явления, электромагнетизм, термодинамику и квантовые эффекты."
         },
         {
-            src: "https://via.placeholder.com/800x400?text=Химия",
+            src: "http://imapress.media/wp-content/uploads/2017/11/Nauchpop-lektsii-15.jpg",//"https://via.placeholder.com/800x400?text=Химия",
             title: "Химия",
             description: "Изучение веществ, реакций и их свойств.",
             details: "Химия изучает состав, свойства и взаимодействия веществ, включая органическую и неорганическую химию."

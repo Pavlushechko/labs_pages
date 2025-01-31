@@ -64,24 +64,48 @@ window.onload = function(){
     
     // установка колбек-функций для кнопок операций
     document.getElementById("btn_op_mult").onclick = function() { 
+        if(a !== '' && b !== '' && selectedOperation !== '')
+            {
+                a = (+a) * (+b);
+                b = ''
+                selectedOperation = ''
+            }
         if (a === '') return
         selectedOperation = 'x'
         expressionString = a + ' ' + selectedOperation + ' ' + b
         outputElement.innerHTML = expressionString
     }
     document.getElementById("btn_op_plus").onclick = function() { 
+        if(a !== '' && b !== '' && selectedOperation !== '')
+            {
+                a = (+a) + (+b);
+                b = ''
+                selectedOperation = ''
+            }
         if (a === '') return
         selectedOperation = '+'
         expressionString = a + ' ' + selectedOperation + ' ' + b
         outputElement.innerHTML = expressionString
     }
     document.getElementById("btn_op_minus").onclick = function() { 
+        if(a !== '' && b !== '' && selectedOperation !== '')
+            {
+                a = (+a) - (+b);
+                b = ''
+                selectedOperation = ''
+            }
         if (a === '') return
         selectedOperation = '-'
         expressionString = a + ' ' + selectedOperation + ' ' + b
         outputElement.innerHTML = expressionString
     }
     document.getElementById("btn_op_div").onclick = function() { 
+        if(a !== '' && b !== '' && selectedOperation !== '')
+            {
+                a = (+a) / (+b);
+                b = ''
+                selectedOperation = ''
+            }
         if (a === '') return
         selectedOperation = '/'
         expressionString = a + ' ' + selectedOperation + ' ' + b
@@ -99,6 +123,12 @@ window.onload = function(){
     }
 
     document.getElementById("btn_op_sign").onclick = function() {
+        if(a !== '' && b !== '' && selectedOperation !== '')
+            {
+                a = (+a) * (+b/100);
+                b = ''
+                selectedOperation = ''
+            }
         if (b === '' && a !== '') {
             a = (-a).toString();
             expressionString = a + ' ' + (selectedOperation || '') + ' ' + b 
@@ -111,6 +141,12 @@ window.onload = function(){
     }
 
     document.getElementById("btn_op_percent").onclick = function() {
+        if(a !== '' && b !== '' && selectedOperation !== '')
+        {
+            a = (+a) * (+b/100);
+            b = ''
+            selectedOperation = ''
+        }
         if (b === '' && a !== '') {
             selectedOperation = "%"
             expressionString = a + ' ' + (selectedOperation || '') + ' ' + b

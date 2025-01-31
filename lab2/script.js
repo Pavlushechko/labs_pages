@@ -112,11 +112,11 @@ window.onload = function(){
 
     document.getElementById("btn_op_percent").onclick = function() {
         if (b === '' && a !== '') {
-            a = (+a / 100).toString();
+            selectedOperation = "%"
             expressionString = a + ' ' + (selectedOperation || '') + ' ' + b
             outputElement.innerHTML = expressionString;
         } else if (b !== '') {
-            b = (+b / 100).toString();
+            selectedOperation = "%"
             expressionString = a + ' ' + (selectedOperation || '') + ' ' + b
             outputElement.innerHTML = expressionString;
         }
@@ -140,6 +140,8 @@ window.onload = function(){
             case '/':
                 expressionResult = (+a) / (+b)
                 break;
+            case '%':
+                expressionResult = (+a) * (+b/100)
         }
         
         // Дополняем выражение результатом

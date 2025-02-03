@@ -4,14 +4,15 @@ window.onload = function(){
     let expressionResult = ''
     let selectedOperation = null
     let expressionString = '' 
-    let colors = ['gray', 'yellow', 'red', 'blue', 'green', 'purple']; // Список цветов
-    let currentColorIndex = 0; // Текущий индекс цвета
+    let colors = ['gray', 'yellow', 'red', 'blue', 'green', 'purple']; 
+    let currentColorIndex = 0;
     
-    // окно вывода результата
     outputElement = document.getElementById("result")
-    
-    // список объектов кнопок циферблата (id которых начинается с btn_digit_)
     digitButtons = document.querySelectorAll('[id ^= "btn_digit_"]')
+    
+    function formatNumber(num) {
+        return parseFloat(num).toString();
+    }
     
     function onDigitButtonClicked(digit) {
         if (!selectedOperation) {
@@ -22,19 +23,14 @@ window.onload = function(){
                 else if (a === "Infinity"){
                     a = digit
                 }
-                else if (a[0] === "0"){
-                    if (a[1] === "."){
-                        a += digit
-                    }
-                    else if(a[1] !== "."){
-                        a = digit
-                    }
+                else if (a[0] === "0" && a[1] !== "."){
+                    a = digit
                 }
                 else{
                     a += digit
                 }
             }
-            outputElement.innerHTML = a
+            outputElement.innerHTML = formatNumber(a)
         } else {
             if ((digit != '.') || (digit == '.' && !b.includes(digit))) { 
                 if (digit === '.' && ((b === "0")||(b === ""))){
@@ -54,6 +50,42 @@ window.onload = function(){
             }
         }
     }
+    
+    digitButtons.forEach(button => {
+        button.onclick = function() {
+            const digitValue = button.innerHTML
+            onDigitButtonClicked(digitValue)
+        }
+    });
+    
+    function calculateResult() {
+        if (a === '' || b === '' || !selectedOperation) return;
+        switch(selectedOperation) { 
+            case 'x':
+                expressionResult = (+a) * (+b)
+                break;
+            case '+':
+                expressionResult = (+a) + (+b)
+                break;
+            case '-':
+                expressionResult = (+a) - (+b)
+                break;
+            case '/':
+                expressionResult = (+a) / (+b)
+                break;
+            case '%':
+                expressionResult = (+a) * (+b/100)
+        }
+        
+        outputElement.innerHTML = formatNumber(expressionResult);
+        a = expressionResult.toString()
+        b = ''
+        selectedOperation = null
+    }
+    
+    document.getElementById("btn_op_equal").onclick = calculateResult;
+
+
     // устанавка колбек-функций на кнопки циферблата по событию нажатия
     digitButtons.forEach(button => {
         button.onclick = function() {
@@ -181,10 +213,10 @@ window.onload = function(){
         }
         
         // Дополняем выражение результатом
-        outputElement.innerHTML = expressionResult
+        outputElement.innerHTML = parseFloat(expressionResult).toFixed(2);
         
         // Обновляем переменные для следующего расчета
-        a = expressionResult.toString()
+        a = parseFloat(expressionResult).toFixed(2);  // Округляет до 2 знаков и переводит в строку
         b = ''
         selectedOperation = null
     }
